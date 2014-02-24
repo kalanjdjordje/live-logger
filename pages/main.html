@@ -1,0 +1,25 @@
+<html>
+	<head>
+		<script src="/socket.io/socket.io.js"></script>
+		<script>
+		var socket = io.connect('http://localhost');
+		socket.on('log', function (data) {
+			console.log(data);
+			appendLog(data);
+			});		
+		function appendLog(log){
+			var logs = document.getElementById("logs");
+			var newLog = document.createElement('p');
+			newLog.innerHTML = log.text;
+			
+			
+			logs.appendChild(newLog);
+		}
+		</script>
+	</head>
+	<body>
+	<div id="logs">
+	
+	</div>
+	</body>
+</html>

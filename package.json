@@ -1,0 +1,19 @@
+{
+  "name": "live-logger",
+  "version": "0.0.1",
+  "description": "live-logger",
+  "main": "live-logger.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified! Configure in package.json\" && exit 1"
+  },
+  "repository": "",
+  "keywords": [
+    "Logger",
+    "Log",
+    "Live Log",
+    "Debug"
+  ],
+  "author": "Kalanj Djordje",
+  "license": "MIT",
+  "readmeFilename": "README.md"
+}

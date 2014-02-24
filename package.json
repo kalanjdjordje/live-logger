@@ -2,18 +2,32 @@
   "name": "live-logger",
   "version": "0.0.1",
   "description": "live-logger",
-  "main": "live-logger.js",
+  "main": "./lib/live-logger",
   "scripts": {
     "test": "echo \"Error: no test specified! Configure in package.json\" && exit 1"
   },
   "repository": "",
   "keywords": [
-    "Logger",
-    "Log",
-    "Live Log",
-    "Debug"
+    "logger",
+    "log",
+    "live log",
+    "logging",
+    "debug"
   ],
-  "author": "Kalanj Djordje",
+  "engines": {
+	    "node": ">=0.8"
+	  },
+  "repository": {
+	    "type": "git",
+	    "url": "https://github.com/kalanjdjordje/live-logger.git"
+	  },
+	  "bugs": {
+	    "url": "http://github.com/kalanjdjordje/live-logger/issues"
+	  },
+  "author":  {
+	    "name": "Kalanj Djordje",
+	    "email": "kalanjdjordje@gmail.com"
+	  },
   "license": "MIT",
   "readmeFilename": "README.md"
 }

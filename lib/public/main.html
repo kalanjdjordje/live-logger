@@ -1,0 +1,55 @@
+<html ng-app="LiveLogger">
+	<head>			
+		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">		
+		<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+		<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular.min.js"></script>
+		<script src="/socket.io/socket.io.js"></script>
+		<script src="app.js"></script>
+		<script>
+		
+		
+		
+		function appendLog(log){
+			var logs = document.getElementById("logs");
+			var newLog = document.createElement('p');
+			newLog.innerHTML =log.time +' | <font color="'+getColor(log.level)+'">'+ log.category + '</font> <font color="'+getColor(log.level)+'">' + log.level + ' ' + log.message+'</font>';
+			
+			logs.insertBefore(newLog, logs.firstChild);
+			
+			//logs.appendChild(newLog);
+		}
+		
+		</script>
+			<style>
+		
+		.logs > p {
+			font-family:"Courier New", Courier, monospace;
+			font-size:10px;
+			margin: 0;
+			padding: 0;
+			background-color: 000;
+			color:green;
+		}
+		</style>
+		<script type="text/ng-template" id="console.html">
+				<div class="" style="max-height: 100%px;overflow: hidden;">
+					<div class="logs" style=" max-height: 80%;overflow: auto;">
+						<p ng-repeat="log in data">{{formatDate(log.time)}} | <font color="{{getColor(log.level)}}"> {{log.level}}</font> {{log.message}}</p>
+					</div>		
+				</div>
+		</script>
+	</head>
+	<body  ng-controller="LogsCtrl">	
+		<div class="container">
+			<ul class="nav nav-tabs">  
+				<li lass="active"><a href="#all" data-toggle="tab">All</a></li>
+				<li ng-repeat="(category, clogs) in categories"><a href="#cat-{{$index}}" data-toggle="tab">{{category}}</a></li>
+			</ul>
+			<div class="tab-content">
+	  			<div class="tab-pane active" id="all"><ng-include src="'console.html'" onload="data = logs; c_name='All'"/></div>
+	  			<div class="tab-pane" id="cat-{{$index}}"  ng-repeat="(category, clogs) in categories"><ng-include src="'console.html'" onload="data = clogs; c_name=category"/></div>
+			</div>
+		</div>
+	</body>
+</html>

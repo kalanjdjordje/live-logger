@@ -1,16 +1,40 @@
 /**
  * 
  */
+var express = require('express')
+  , http = require('http')
+  , path = require('path');
 
-var loggerServer = require('../lib/live-logger');
-var logger	= require('../lib/live-logger').Logger({});
-loggerServer.startLogger(2200);
 
-logger.log("asd");
-logger.trace("asd");
-logger.debug("asd");
-logger.info("asd");
+var app = express();
+
+app.set('port', process.env.PORT || 3000);
+
+
+
+var loggServer =  require('../lib/live-logger').LogServer();
+
+//var logger = require('../lib/live-logger');
+
+
+app.post("/server/log",loggServer.handleLog);
+
+
+loggServer.listen(app);
+
+
+var logger	= require('../lib/live-logger').Logger();
 logger.warn("asd");
-logger.error("asd");
-logger.fatal("asd");
-logger.wtf("asd");
+//loggerServer.startLogger(2200);
+/*setInterval(function(){
+	
+	logger.warn("asd2");
+	logger.error("asd222");
+	logger.fatal("asd22222");
+	logger.wtf("asd22222 dasdsff dsfsdfsdfdsfgdsfgdfgdf");
+	logger.wtf("asd22222 dasdsff dsfsdfsdfdsfgdsfgdfgdf","transactionId:1686513256432");
+}, 500);
+*/
+http.createServer(app).listen(app.get('port'), function(){
+	  console.log('Express server listening on port ' + app.get('port'));
+});

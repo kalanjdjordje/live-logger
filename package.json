@@ -1,6 +1,6 @@
 {
   "name": "live-logger",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "live-logger",
   "main": "./lib/live-logger",
   "scripts": {

@@ -35,7 +35,7 @@
 		<script type="text/ng-template" id="console.html">
 				<div class="" style="max-height: 100%px;overflow: hidden;">
 					<div class="logs" style=" max-height: 80%;overflow: auto;">
-						<p ng-repeat="log in data">{{formatDate(log.time)}} | <font color="{{getColor(log.level)}}"> {{log.level}}</font> {{log.message}}</p>
+						<p ng-repeat="log in data">{{formatDate(log.time)}} | <font style="width:140px;" color="{{getColor(log.level)}}"> {{log.level}}</font> | <font ng-if="c_name=='All'">{{log.category}} #</font>  {{log.message}}</p>
 					</div>		
 				</div>
 		</script>
@@ -47,9 +47,15 @@
 				<li ng-repeat="(category, clogs) in categories"><a href="#cat-{{$index}}" data-toggle="tab">{{category}}</a></li>
 			</ul>
 			<div class="tab-content">
-	  			<div class="tab-pane active" id="all"><ng-include src="'console.html'" onload="data = logs; c_name='All'"/></div>
-	  			<div class="tab-pane" id="cat-{{$index}}"  ng-repeat="(category, clogs) in categories"><ng-include src="'console.html'" onload="data = clogs; c_name=category"/></div>
+	  			<div class="tab-pane active" id="all">
+	  				<button type="button" class="btn btn-default" ng-click="clearLogs()">Clear</button>
+	  				<ng-include src="'console.html'" onload="data = logs; c_name='All'"/>
+	  			</div>
+  				<div class="tab-pane" id="cat-{{$index}}"  ng-repeat="(category, clogs) in categories">
+	  				<button type="button" class="btn btn-default" ng-click="clearLogs(category)">Clear</button>
+  					<ng-include src="'console.html'" onload="data = clogs; c_name=category"/>
+  				</div>
+				</div>
 			</div>
-		</div>
 	</body>
 </html>

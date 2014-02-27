@@ -17,7 +17,7 @@ var loggServer =  require('../lib/live-logger').LogServer();
 //var logger = require('../lib/live-logger');
 
 
-app.post("/server/log",loggServer.handleLog);
+app.post("/logger/log",loggServer.handleLog);
 
 
 loggServer.listen(app);
